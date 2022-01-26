@@ -76,7 +76,7 @@ const Product = ({ item }) => {
         <Icon>
           <ShoppingCartOutlined />
         </Icon>
-        <Link to = {"/product/"+item.id} style={{ textDecoration: 'none', color: "black"}}>
+        <Link to = {"/product/"+item._id} style={{ textDecoration: 'none', color: "black"}}>
           <Icon>
             <SearchOutlined />
           </Icon>

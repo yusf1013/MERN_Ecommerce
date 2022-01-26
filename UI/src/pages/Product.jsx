@@ -6,7 +6,8 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
-import { popularProducts } from "../data";
+import { baseURL, popularProducts } from "../data";
+import { useEffect, useState } from "react";
 
 const Container = styled.div``;
 
@@ -119,9 +120,35 @@ const Button = styled.button`
 `;
 
 const Product = () => {
-  let id = useParams()['id'];
-  let product = popularProducts[parseInt(id)-1];
-  return (
+
+  const [product, setProduct] = useState(() => {});
+  const id = useParams()['id'];
+
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+
+  useEffect(() => {
+    fetch(`${baseURL}products/find/${id}`).then(resp => resp.json()).then(json => setProduct(json))
+    
+  }, [id]);
+
+  useEffect(() => {
+    if(!product) return;
+    
+    setColor(product.color[0]);
+    setSize(product.size[0]);
+  }, [product]);
+
+  const updateColor = x => {console.log(x); setColor(x)};
+  const updateSize = x => {console.log(x.target.value, color); setSize(x.target.value)};
+  
+
+  // let id = useParams()['id'];
+  // let product = popularProducts[parseInt(id)-1];
+
+
+  return !product ? <Container></Container> : (
     <Container>
       <Navbar />
       <Announcement />
@@ -131,34 +158,28 @@ const Product = () => {
           <Image src = {product['img']} />
         </ImgContainer>
         <InfoContainer>
-          <Title>Denim Jumpsuit</Title>
+          <Title> {product['title']} </Title>
           <Desc>
             {product['desc']}
           </Desc>
-          <Price>$ 20</Price>
+          <Price>$ {product['price']}</Price>
           <FilterContainer>
             <Filter>
-              <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
+              <FilterTitle >Color</FilterTitle>
+              {product.color.map(item => <FilterColor color= {item} key = {item} onClick={() => updateColor(item)}/>)}
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
+              <FilterSize onChange={updateSize} defaultValue={size}>
+                {product.size.map((item) => <FilterSizeOption key={item}>{item}</FilterSizeOption>)}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick={() => setQuantity((old) => Math.max(old-1, 1))} />
+              <Amount>{quantity}</Amount>
+              <Add onClick={() => setQuantity((old) => old+1)}/>
             </AmountContainer>
             <Button>ADD TO CART</Button>
           </AddContainer>
@@ -168,6 +189,10 @@ const Product = () => {
       <Footer />
     </Container>
   );
+
+  // return product ? <Container> {product.title} </Container> : <Container></Container>;
+  // return <Container>{product.title} </Container>;
+
 };
 
 export default Product;

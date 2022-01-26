@@ -4,18 +4,20 @@ import ProductList from "./pages/ProductList";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, Navigate } from "react-router-dom";
 
 const App = () => {
+
+  let user = true;
 
   return (<Router>
     <Routes>
       <Route exact path = "/" element = {<Home />} />
-      <Route exact path = "/product_list" element = {<ProductList />} />
+      <Route exact path = "/products" element = {<ProductList />} />
       <Route exact path = "/product/:id" element = {<Product />} />
-      <Route exact path = "/register" element = {<Register />} />
-      <Route exact path = "/login" element = {<Login />} />
-
+      <Route exact path = "/register" element = {user ? <Navigate to = "/" /> : <Register />} />
+      <Route exact path = "/login" element = { user ? <Navigate to = "/" /> : <Login /> } />
+      <Route exact path = "/cart" element = {<Cart />} />
 
 
     </Routes>
