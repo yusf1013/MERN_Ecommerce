@@ -1,7 +1,4 @@
 const User = require("../models/User");
-const CryptoJS = require("crypto-js");
-
-
 const {
   verifyToken,
   verifyTokenAndAuthorization,
@@ -27,8 +24,7 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
       },
       { new: true }
     );
-    let {password, ...other} = updatedUser._doc;
-    res.status(200).json(other);
+    res.status(200).json(updatedUser);
   } catch (err) {
     res.status(500).json(err);
   }
