@@ -6,5 +6,7 @@ This is the best e-commerce application in the world.
 
 #### Setup
 
+Go into each of the folders and hit - yarn install followed by yarn start
+
 #### Licence
 
