@@ -6,7 +6,9 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "../data";
 
 const Container = styled.div``;
 
@@ -44,6 +46,45 @@ const ProductList = () => {
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("newest");
 
+  const [products, setProducts] = useState([]);
+  const [colors, setColors] = useState([]);
+  const [sizes, setSizes] = useState([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await axios.get(
+          cat
+            ? `${BASE_URL}products?category=${cat}`
+            : `${BASE_URL}products`
+        );
+        setProducts(res.data);
+      } catch (err) {}
+    };
+    getProducts();
+  }, [cat]);
+
+  useEffect(() => {
+    const filters = async () => {
+      let cols = [];
+      let s = [];
+      if(!products) return;
+      products.forEach(item => {
+        item['color'].forEach(element => {
+            if(cols.indexOf(element.toLowerCase()) === -1) cols.push(element.toLowerCase());
+        });
+
+        item['size'].forEach(element => {
+          if(s.indexOf(element.toLowerCase()) === -1) s.push(element.toLowerCase());
+      });
+      });
+      setColors(cols);
+      setSizes(s);
+    };
+    filters();
+  }, [products]);
+
+
   const handleFilters = (e) => {
     const value = e.target.value;
     setFilters({
@@ -63,21 +104,12 @@ const ProductList = () => {
         <Filter>
           <FilterText>Filter Products:</FilterText>
           <Select name="color" onChange={handleFilters}>
-            <Option disabled>Color</Option>
-            <Option>white</Option>
-            <Option>black</Option>
-            <Option>red</Option>
-            <Option>blue</Option>
-            <Option>yellow</Option>
-            <Option>green</Option>
+            <Option >Color</Option>
+            {colors.map(color => <Option key={color}>{color.charAt(0).toUpperCase() + color.substr(1)}</Option>)}
           </Select>
           <Select name="size" onChange={handleFilters}>
-            <Option disabled>Size</Option>
-            <Option>XS</Option>
-            <Option>S</Option>
-            <Option>M</Option>
-            <Option>L</Option>
-            <Option>XL</Option>
+            <Option >Size</Option>
+            {sizes.map(size => <Option key={size}>{size.toUpperCase()}</Option>)}
           </Select>
         </Filter>
         <Filter>
@@ -89,7 +121,7 @@ const ProductList = () => {
           </Select>
         </Filter>
       </FilterContainer>
-      <Products cat={cat} filters={filters} sort={sort} />
+      <Products cat={cat} filters={filters} sort={sort} products = {products} key = {"products[0]._id"}/>
       <Newsletter />
       <Footer />
     </Container>

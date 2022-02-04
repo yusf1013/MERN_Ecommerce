@@ -77,4 +77,6 @@ export const sliderItems = [
       id:8,
       img:"https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
     },
-  ]
+  ];
+
+  export const BASE_URL = "http://localhost:5000/api/";

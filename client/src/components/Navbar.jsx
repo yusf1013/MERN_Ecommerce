@@ -72,7 +72,6 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
-const linkStyle = {textDecoration: 'none', color: 'black'};
 
 const Navbar = () => {
   const quantity = useSelector(state=>state.cart.quantity);
