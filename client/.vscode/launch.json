@@ -8,7 +8,7 @@
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost:3000/product/61efd756c757ab198d79888f",
+            "url": "http://localhost:3000/products",
             "webRoot": "${workspaceFolder}"
         }
     ]
