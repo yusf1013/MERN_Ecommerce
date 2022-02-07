@@ -8,7 +8,9 @@ import { mobile } from "../responsive";
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { BASE_URL } from "../data";
+// import { BASE_URL } from "../data";
+
+const BASE_URL = process.env.BASE_URL;
 
 const Container = styled.div``;
 
