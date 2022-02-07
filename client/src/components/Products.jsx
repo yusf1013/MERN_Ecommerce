@@ -12,20 +12,6 @@ const Container = styled.div`
 const Products = ({products, cat, filters, sort }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     try {
-  //       const res = await axios.get(
-  //         cat
-  //           ? `${BASE_URL}products?category=${cat}`
-  //           : `${BASE_URL}products`
-  //       );
-  //       setProducts(res.data);
-  //     } catch (err) {}
-  //   };
-  //   getProducts();
-  // }, [cat]);
-
   useEffect(() => {
     console.log("Filter data:", filters);
 

@@ -11,7 +11,7 @@ import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
 import { decreaseProduct, increaseProduct } from "../redux/cartRedux";
 
-const KEY = process.env.REACT_APP_STRIPE;
+const KEY = envprocess..REACT_APP_STRIPE;
 
 const Container = styled.div``;
 
