@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 // import { BASE_URL } from "../data";
 
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Container = styled.div``;
 
@@ -61,7 +61,12 @@ const ProductList = () => {
             : `${BASE_URL}products`
         );
         setProducts(res.data);
-      } catch (err) {}
+        console.log("YO", res.data);
+
+      } catch (err) {
+        console.log("Sth hap", err);
+        console.log("Error: ", `${BASE_URL}products`);
+      }
     };
     getProducts();
   }, [cat]);
