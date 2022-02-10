@@ -163,7 +163,7 @@ const Product = () => {
 
   console.log("Product:", product);
 
-  return !product ? <Container></Container> : (
+  return !product ? <Container>Please wait...</Container> : (
     <Container>
       <Navbar />
       <Announcement />

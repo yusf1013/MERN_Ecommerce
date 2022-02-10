@@ -128,7 +128,7 @@ const ProductList = () => {
           </Select>
         </Filter>
       </FilterContainer>
-      <Products cat={cat} filters={filters} sort={sort} products = {products} key = {"products[0]._id"}/>
+      <Products filters={filters} sort={sort} products = {products} key = {"products[0]._id"}/>
       <Newsletter />
       <Footer />
     </Container>

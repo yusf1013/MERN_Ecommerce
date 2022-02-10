@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { register } from "../redux/apiCalls";
 
@@ -63,8 +63,8 @@ const Error = styled.div`
 `;
 
 const Register = () => {
-  const { isFetching, error } = useSelector((state) => state.user);
-  const [user, setUser] = useState();
+  // const { isFetching, error } = useSelector((state) => state.user);
+  // const [user, setUser] = useState();
   const [em, setEm] = useState(null);
   const dispatch = useDispatch();
 
