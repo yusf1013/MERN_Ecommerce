@@ -181,7 +181,10 @@ const Cart = () => {
         history.push("/success", {
           stripeData: res.data,
           products: cart, });
-      } catch {}
+      } catch (err) {
+        console.log("Sth hap", err);
+        console.log("Error: ", `/checkout/payment`);
+      }
     };
     stripeToken && makeRequest();
   }, [stripeToken, cart.total, history, cart]);

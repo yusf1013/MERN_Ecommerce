@@ -135,7 +135,10 @@ const Product = () => {
       try {
         const res = await publicRequest.get("/products/find/" + id);
         setProduct(res.data);
-      } catch {}
+      } catch (err) {
+        console.log("Sth hap", err);
+        console.log("Error: ", `/products/find/`);
+      }
     };
     getProduct();
   }, [id]);

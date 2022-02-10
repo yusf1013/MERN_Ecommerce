@@ -17,7 +17,7 @@ export const register = async (dispatch, user) => {
     dispatch(loginSuccess(res.data));
     return true;
   } catch (err) {
-    console.log(err);
+    console.log("/auth/register ->", err);
     return false;
   }
 };
