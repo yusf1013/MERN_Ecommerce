@@ -88,11 +88,11 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>LAMA.</Logo>
+        <Logo>ONE-STOP.</Logo>
         <Desc>
           There are many variations of passages of Lorem Ipsum available, but
           the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
+          humour, or randomized words which don’t look even slightly believable.
         </Desc>
         <SocialContainer>
           <SocialIcon color="3B5999">

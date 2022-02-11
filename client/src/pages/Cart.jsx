@@ -160,6 +160,7 @@ const Button = styled.button`
   font-weight: 600;
   /* border: 2px solid grey; */
   border: ${(props) => props.off ? "2px solid grey" : "null"};
+  cursor: pointer;
 `;
 
 const Cart = () => {
@@ -180,7 +181,7 @@ const Cart = () => {
         });
         history.push("/success", {
           stripeData: res.data,
-          products: cart, });
+          cart: cart, });
       } catch (err) {
         console.log("Sth hap", err);
         console.log("Error: ", `/checkout/payment`);
@@ -230,9 +231,9 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <ProductAmountContainer>
-                    <Add onClick={() => increase(product)} />
+                    <Add onClick={() => increase(product)} style={{cursor: 'pointer'}}/>
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove onClick={() => decrease(product)} />
+                    <Remove onClick={() => decrease(product)} style={{cursor: 'pointer'}}/>
                   </ProductAmountContainer>
                   <ProductPrice>
                     $ {product.price * product.quantity}
@@ -261,8 +262,8 @@ const Cart = () => {
               <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <StripeCheckout
-              name="Lama Shop"
-              image="https://avatars.githubusercontent.com/u/1486366?v=4"
+              name="One-Stop Shop"
+              image="https://i.ibb.co/njCRKNv/man-1-removebg-preview.png"
               billingAddress
               shippingAddress
               description={`Your total is $${cart.total}`}

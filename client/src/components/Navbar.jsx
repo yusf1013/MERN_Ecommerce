@@ -90,7 +90,7 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo onClick={() => history.push("/")}>LAMA.</Logo>
+          <Logo onClick={() => history.push("/")}>ONE-STOP.</Logo>
         </Center>
         <Right>
           {!user ? <MenuItem onClick={() => history.push("/register")}>REGISTER</MenuItem> : <MenuItem>MY ACCOUNT</MenuItem>}
