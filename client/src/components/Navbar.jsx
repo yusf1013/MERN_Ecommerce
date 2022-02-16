@@ -1,13 +1,14 @@
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { logout } from "../redux/userRedux";
 import { useDispatch } from "react-redux";
+import Modal from "./Modals";
+import LoginComp from "./LoginComponent";
 
 const Container = styled.div`
   height: 60px;
@@ -78,8 +79,20 @@ const Navbar = () => {
   const history = useHistory();
   const user = useSelector((state) => state.user.currentUser); 
   const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const cartClick = () => {
+    if(user)
+    {
+        history.push("/cart");
+        return;
+    }
+
+    setIsOpen(true);
+  }
 
   return (
+    <>
     <Container>
       <Wrapper>
         <Left>
@@ -95,18 +108,20 @@ const Navbar = () => {
         <Right>
           {!user ? <MenuItem onClick={() => history.push("/register")}>REGISTER</MenuItem> : <MenuItem>MY ACCOUNT</MenuItem>}
           {!user ? <MenuItem onClick={() => history.push("/login")}>SIGN IN</MenuItem> : <MenuItem onClick={() => {console.log("Shit"); dispatch(logout())}}>LOGOUT</MenuItem>}
-          {/* <MenuItem onClick={() => history.push("/register")}>REGISTER</MenuItem> */}
-          {/* <MenuItem onClick={() => history.push("/login")}>SIGN IN</MenuItem> */}
-          <Link to="/cart">
-          <MenuItem>
+          
+          <MenuItem onClick={cartClick}>
             <Badge badgeContent={quantity} color="primary">
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>
-          </Link>
         </Right>
       </Wrapper>
     </Container>
+
+    <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+          <LoginComp title = "SIGN IN TO CONTINUE"></LoginComp>
+    </Modal>
+    </>
   );
 };
 
