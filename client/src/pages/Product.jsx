@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import LoginRequired from "../components/LoginRequired";
 
 const Container = styled.div``;
 
@@ -199,7 +200,10 @@ const Product = () => {
               <Amount>{quantity}</Amount>
               <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
+            {/* <Button onClick={handleClick}>ADD TO CART</Button> */}
+            <LoginRequired child={
+                <Button>ADD TO CART</Button>
+            } onClick = {handleClick}/>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

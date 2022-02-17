@@ -9,6 +9,7 @@ import { logout } from "../redux/userRedux";
 import { useDispatch } from "react-redux";
 import Modal from "./Modals";
 import LoginComp from "./LoginComponent";
+import LoginRequired from "./LoginRequired";
 
 const Container = styled.div`
   height: 60px;
@@ -79,16 +80,17 @@ const Navbar = () => {
   const history = useHistory();
   const user = useSelector((state) => state.user.currentUser); 
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
 
   const cartClick = () => {
-    if(user)
-    {
-        history.push("/cart");
-        return;
-    }
+    console.log("I am a cube!");
+    history.push("/cart");
+    // if(user)
+    // {
+    //     history.push("/cart");
+    //     return;
+    // }
 
-    setIsOpen(true);
+    // setIsOpen(true);
   }
 
   return (
@@ -109,18 +111,29 @@ const Navbar = () => {
           {!user ? <MenuItem onClick={() => history.push("/register")}>REGISTER</MenuItem> : <MenuItem>MY ACCOUNT</MenuItem>}
           {!user ? <MenuItem onClick={() => history.push("/login")}>SIGN IN</MenuItem> : <MenuItem onClick={() => {console.log("Shit"); dispatch(logout())}}>LOGOUT</MenuItem>}
           
-          <MenuItem onClick={cartClick}>
+          <LoginRequired child = {
+            <MenuItem>
+              <Badge badgeContent={quantity} color="primary">
+                <ShoppingCartOutlined />
+              </Badge>
+            </MenuItem>
+          } 
+          onClick = {()=> cartClick()}>
+          </LoginRequired>
+
+          {/* <MenuItem onClick={cartClick}>
             <Badge badgeContent={quantity} color="primary">
               <ShoppingCartOutlined />
             </Badge>
-          </MenuItem>
+          </MenuItem> */}
+
         </Right>
       </Wrapper>
     </Container>
 
-    <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+    {/* <Modal open={isOpen} onClose={() => setIsOpen(false)}>
           <LoginComp title = "SIGN IN TO CONTINUE"></LoginComp>
-    </Modal>
+    </Modal> */}
     </>
   );
 };

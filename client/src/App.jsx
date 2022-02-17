@@ -33,7 +33,7 @@ const App = () => {
           <Product />
         </Route>
         <Route path="/cart">
-          <Cart />
+          {user ?  <Cart /> : <Redirect to="/" />}
         </Route>
         <Route path="/success">
           <Success />

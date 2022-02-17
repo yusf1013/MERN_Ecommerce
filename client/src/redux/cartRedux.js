@@ -9,9 +9,24 @@ const cartSlice = createSlice({
   },
   reducers: {
     addProduct: (state, action) => {
-      state.products.push(action.payload);
+      // state.products.push(action.payload);
+      // state.total = state.products.reduce((a, b) => a + b.quantity * b.price, 0);
+      // state.quantity = state.products.length;
+      let added = false;
+      state.products.forEach((item) => {
+        if(item._id === action.payload._id && item.color === action.payload.color && item.size === action.payload.size) 
+        { 
+          item.quantity += 1;
+          added = true;
+        }
+      });
+
+      if(!added){
+        state.products.push(action.payload);
+        state.quantity = state.products.length;
+      }
+
       state.total = state.products.reduce((a, b) => a + b.quantity * b.price, 0);
-      state.quantity = state.products.length;
     },
 
     increaseProduct: (state, action) => {

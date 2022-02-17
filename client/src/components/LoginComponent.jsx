@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -46,7 +47,7 @@ const Button = styled.button`
 
 const Link = styled.a`
   margin: 5px 0px;
-  font-size: 14px;
+  font-size: 13px;
   text-decoration: underline;
   cursor: pointer;
 `;
@@ -60,6 +61,7 @@ const LoginComp = ({title = "SIGN IN"}) => {
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector((state) => state.user);
+    const history = useHistory();
   
     const handleClick = (e) => {
       e.preventDefault();
@@ -83,7 +85,7 @@ const LoginComp = ({title = "SIGN IN"}) => {
           </Button>
           {error && <Error>Something went wrong...</Error>}
           <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
+          <Link onClick={() => history.push("/register")}>CREATE A NEW ACCOUNT</Link>
         </Form>
         </Wrapper>
         
