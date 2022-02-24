@@ -10,10 +10,13 @@ const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
 const stripeRoute = require("./routes/stripe");
 const cors = require("cors");
-
+const fs = require("fs");
 
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect(process.env.MONGO_URL, {
+    ssl: true, 
+    sslValidate: false,
+  })
   .then(() => console.log("DB Connection Successfull!"))
   .catch((err) => {
     console.log(err);

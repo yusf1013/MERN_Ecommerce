@@ -1,5 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
+// import axios from "axios";
+// const BASE_URL = process.env.REACT_APP_BASE_URL;
+// const updateCart = (state) => {
+//   const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+//   const currentUser = user && JSON.parse(user).currentUser;
+//   if(!currentUser) return;
+
+//   console.log("Cart: ", currentUser.accessToken);
+//   // userRequest.post("/carts", {
+//   //   owner: currentUser._id,
+//   //   products: state.products,
+//   //   quantity: state.quantity,
+//   //   total: state.total,
+//   // })
+//   try {
+//     axios.put(`${BASE_URL}carts/${currentUser._id}`, {
+//       userId: currentUser._id,
+//       products: state.products,
+//       quantity: state.quantity,
+//       total: state.total,
+//     }, {
+//       headers: {'Authorization': `Bearer ${currentUser.accessToken}`}
+//     });
+//   } catch (err) {
+//     console.log("Sth hap", err);
+//     console.log("Error: ", `${BASE_URL}products`);
+//   }
+// }
+
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
@@ -9,9 +39,6 @@ const cartSlice = createSlice({
   },
   reducers: {
     addProduct: (state, action) => {
-      // state.products.push(action.payload);
-      // state.total = state.products.reduce((a, b) => a + b.quantity * b.price, 0);
-      // state.quantity = state.products.length;
       let added = false;
       state.products.forEach((item) => {
         if(item._id === action.payload._id && item.color === action.payload.color && item.size === action.payload.size) 
@@ -27,6 +54,8 @@ const cartSlice = createSlice({
       }
 
       state.total = state.products.reduce((a, b) => a + b.quantity * b.price, 0);
+
+      // updateCart(state);
     },
 
     increaseProduct: (state, action) => {
