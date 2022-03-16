@@ -12,7 +12,7 @@ phases:
       - npm install --global yarn
       - echo trying stuff
       - pwd
-      - la
+      - ls -a
   pre_build:
     commands:
       - echo installing dependencies
