@@ -10,6 +10,9 @@ phases:
       - node -v
       - echo installing yarn
       - npm install --global yarn
+      - echo trying stuff
+      - pwd
+      - la
   pre_build:
     commands:
       - echo installing dependencies
