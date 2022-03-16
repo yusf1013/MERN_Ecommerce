@@ -11,14 +11,10 @@ phases:
       - echo installing yarn
       - npm install --global yarn
       - echo trying stuff
-      - pwd
-      - ls -a
   pre_build:
     commands:
       - echo installing 
       - cd ./client
-      - pwd
-      - ls -a
       - yarn
   build:
     commands:
@@ -29,4 +25,4 @@ artifacts:
   files:
     - "**/*"
   discard-paths: no
-  base-directory: build
+  base-directory: client/build
