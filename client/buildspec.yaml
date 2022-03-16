@@ -26,3 +26,6 @@ artifacts:
     - "**/*"
   discard-paths: no
   base-directory: client/build
+
+  # env:
+  #   variables:

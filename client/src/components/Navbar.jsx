@@ -1,14 +1,12 @@
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { logout } from "../redux/userRedux";
 import { useDispatch } from "react-redux";
-import Modal from "./Modals";
-import LoginComp from "./LoginComponent";
 import LoginRequired from "./LoginRequired";
 
 const Container = styled.div`
