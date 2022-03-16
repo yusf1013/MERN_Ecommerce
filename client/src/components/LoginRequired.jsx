@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import Modal from "./Modals";
 import LoginComp from "./LoginComponent";
-import {publicRequest} from "../requestMethods";
 
 
 export default function LoginRequired({child, onClick}) {

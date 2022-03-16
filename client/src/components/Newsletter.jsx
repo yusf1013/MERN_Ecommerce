@@ -45,7 +45,6 @@ const Button = styled.button`
   background-color: teal;
   color: white;
 `;
-const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Newsletter = () => {
   return (
@@ -58,7 +57,6 @@ const Newsletter = () => {
           <Send />
         </Button>
       </InputContainer>
-      <h1>      Hey there!  {BASE_URL}  is here! :3 </h1>
     </Container>
   );
 };
