@@ -23,7 +23,6 @@ phases:
   build:
     commands:
       - echo building...
-      - cd ./client
       - yarn build
 
 artifacts:
