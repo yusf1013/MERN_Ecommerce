@@ -15,11 +15,15 @@ phases:
       - ls -a
   pre_build:
     commands:
-      - echo installing dependencies
-      - yarn 
+      - echo installing 
+      - cd ./client
+      - pwd
+      - ls -a
+      - yarn
   build:
     commands:
       - echo building...
+      - cd ./client
       - yarn build
 
 artifacts:
