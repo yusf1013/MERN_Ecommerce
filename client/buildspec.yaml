@@ -27,5 +27,7 @@ artifacts:
   discard-paths: no
   base-directory: client/build
 
-  # env:
-  #   variables:
+  env:
+    variables:
+      REACT_APP_STRIPE: $REACT_APP_STRIPE
+      REACT_APP_BASE_URL: $REACT_APP_BASE_URL
