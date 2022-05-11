@@ -31,6 +31,7 @@ const Success = () => {
       } catch (err) {
         console.log("Sth hap", err);
         console.log("Error: ", "/orders");
+        dispatch(clearCart());
       }
     };
     data && createOrder();
