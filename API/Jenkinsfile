@@ -5,6 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building?'
+                sh 'echo shit > shit.txt'
+                echo 's'
             }
         }
         stage('Test') {
@@ -15,7 +17,17 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                script{
+                    withCredentials([sshUserPrivateKey(credentialsId: '3.87.6.215', keyFileVariable: 'ssh_cred')]) {
+                        echo 'hi'
+                        sh 'ls'
+                        sh 'echo hi > hi2.txt'
+                        sh 'scp -i ${ssh_cred} hi2.txt ubuntu@ec2-3-87-6-215.compute-1.amazonaws.com:/home/ubuntu'
+                    }
+                }
             }
         }
+        
+        
     }
 }
