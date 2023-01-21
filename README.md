@@ -1,4 +1,4 @@
-# Project Title <!-- omit from toc -->
+# Project OneStop <!-- omit from toc -->
 
 OneStop is a training project and also my first during my internship at BrainStation-23. The goal was to code and deploy a full fledged, three tier e-commerce application. This serves as hands-on training for DevOps concepts, best practices and tools. This is a solo project, built completely by me from scratch. The choice of technology stack was MERN stack (MongoDB, Express, React, Node). The web app is accessible at https://buy.onestop.rocks/. Below is a overview of the finished product. Following it is a description of the cloud architecture and the devops approaches followed. 
 
